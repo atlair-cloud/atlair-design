@@ -2,15 +2,64 @@
   "name": "@atlair/vue",
   "version": "0.0.0",
   "type": "module",
+  "sideEffects": [
+    "*.css"
+  ],
+  "files": [
+    "dist"
+  ],
   "exports": {
-    ".": "./src/index.ts"
+    ".": {
+      "types": "./dist/types/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./button": {
+      "types": "./dist/types/button/index.d.ts",
+      "import": "./dist/button.js"
+    },
+    "./primitive": {
+      "types": "./dist/types/primitive/index.d.ts",
+      "import": "./dist/primitive.js"
+    },
+    "./visually-hidden": {
+      "types": "./dist/types/visually-hidden/index.d.ts",
+      "import": "./dist/visually-hidden.js"
+    },
+    "./resolver": {
+      "types": "./dist/types/resolver.d.ts",
+      "import": "./dist/resolver.js"
+    },
+    "./style.css": "./dist/style.css",
+    "./manifest.json": "./dist/manifest.json"
   },
   "scripts": {
+    "build": "vite build && vue-tsc -p tsconfig.build.json && node build/postbuild.ts",
+    "size": "size-limit",
     "test": "node --test",
-    "typecheck": "tsc -p tsconfig.json"
+    "typecheck": "vue-tsc --noEmit -p tsconfig.json"
+  },
+  "dependencies": {
+    "@vueuse/core": "^15.0.0",
+    "reka-ui": "^2.11.0",
+    "tailwind-merge": "^3.7.0",
+    "tailwind-variants": "^3.3.1"
+  },
+  "peerDependencies": {
+    "tailwindcss": "^4.0.0",
+    "vue": "^3.5.0"
   },
   "devDependencies": {
+    "@atlair/tokens": "workspace:*",
+    "@size-limit/preset-small-lib": "^14.2.0",
+    "@tailwindcss/vite": "^4.3.3",
     "@types/node": "^24.0.0",
-    "typescript": "^7.0.2"
+    "@vitejs/plugin-vue": "^6.0.10",
+    "size-limit": "^14.2.0",
+    "tailwindcss": "^4.3.3",
+    "typescript": "^6.0.3",
+    "unplugin-vue-components": "^32.1.0",
+    "vite": "^8.3.4",
+    "vue": "^3.5.44",
+    "vue-tsc": "^3.3.13"
   }
 }

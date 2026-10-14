@@ -1,0 +1,29 @@
+[
+  {
+    "name": "@atlair/vue/button",
+    "path": "dist/button.js",
+    "import": "{ AButton }",
+    "ignore": [
+      "vue"
+    ],
+    "limit": "12.4 kB"
+  },
+  {
+    "name": "AButton from the root entry",
+    "path": "dist/index.js",
+    "import": "{ AButton }",
+    "ignore": [
+      "vue"
+    ],
+    "limit": "12.4 kB"
+  },
+  {
+    "name": "everything from the root entry",
+    "path": "dist/index.js",
+    "import": "*",
+    "ignore": [
+      "vue"
+    ],
+    "limit": "13 kB"
+  }
+]
