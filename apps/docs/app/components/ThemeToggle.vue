@@ -12,7 +12,7 @@ const next = () => setTheme(order[(order.indexOf(preference.value) + 1) % order.
   <ClientOnly>
     <AButton
       size="sm"
-      class="border border-border bg-transparent text-fg hover:bg-bg-subtle"
+      variant="outline" color="neutral"
       :aria-label="`Theme: ${preference}. Switch theme`"
       @click="next"
     >

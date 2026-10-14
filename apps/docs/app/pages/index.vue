@@ -26,7 +26,7 @@ useSeoMeta({ title: 'Atlair Design', description: "Atlair's open-source Vue 3 de
     <div class="mt-8 flex items-center gap-3 rounded-base border border-border bg-bg-subtle py-2 pl-4 pr-2 font-mono text-sm">
       <code>{{ command }}</code>
       <ClientOnly>
-        <AButton size="sm" class="border border-border bg-transparent text-fg hover:bg-bg" @click="copy">
+        <AButton size="sm" variant="outline" color="neutral" @click="copy">
           {{ copied ? 'Copied' : 'Copy' }}
         </AButton>
       </ClientOnly>
@@ -36,7 +36,7 @@ useSeoMeta({ title: 'Atlair Design', description: "Atlair's open-source Vue 3 de
       <AButton as-child>
         <NuxtLink to="/docs">Read the docs</NuxtLink>
       </AButton>
-      <AButton as-child class="border border-border bg-transparent text-fg hover:bg-bg-subtle">
+      <AButton as-child variant="outline" color="neutral">
         <NuxtLink to="/tokens">Browse the tokens</NuxtLink>
       </AButton>
     </div>

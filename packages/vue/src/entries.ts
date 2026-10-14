@@ -2,6 +2,7 @@ export const entries = {
   app: ['AApp'],
   button: ['AButton'],
   'config-provider': ['AConfigProvider'],
+  'icon-button': ['AIconButton'],
   primitive: ['APrimitive'],
   theme: [],
   'visually-hidden': ['AVisuallyHidden'],

@@ -6,7 +6,7 @@
     "ignore": [
       "vue"
     ],
-    "limit": "12.4 kB"
+    "limit": "13.7 kB"
   },
   {
     "name": "AButton from the root entry",
@@ -15,7 +15,7 @@
     "ignore": [
       "vue"
     ],
-    "limit": "12.4 kB"
+    "limit": "13.7 kB"
   },
   {
     "name": "everything from the root entry",
@@ -24,6 +24,6 @@
     "ignore": [
       "vue"
     ],
-    "limit": "20 kB"
+    "limit": "21 kB"
   }
 ]
