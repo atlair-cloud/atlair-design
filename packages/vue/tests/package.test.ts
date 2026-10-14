@@ -42,7 +42,8 @@ describe('package', () => {
   })
 
   it('exports the re-exported primitives so apps never import reka-ui', async () => {
-    const mod = await import('@atlair/vue')
+    const specifier = '@atlair/vue'
+    const mod: Record<string, unknown> = await import(specifier)
     for (const name of ['AButton', 'APrimitive', 'AVisuallyHidden']) {
       assert.ok(name in mod, `${name} is not exported`)
     }
