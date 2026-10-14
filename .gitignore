@@ -3,3 +3,7 @@ dist
 .turbo
 .DS_Store
 *.log
+.wrangler
+.output
+storybook-static
+.nuxt
