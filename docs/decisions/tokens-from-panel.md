@@ -25,7 +25,7 @@ was mapped, and what was left out on purpose.
 | `--color-slate-400/500` overrides, and the dark slate ramp | `color.slate`, `color.slate-dark` |
 | `--color-status-live/active/attention` | `color.status.*` |
 | `--ui-error` (`red-600`, dark `#f07a7a`) | `color.status.error.light/dark` |
-| `--skeleton-base/shine` | `color.skeleton.base/shine` |
+| `--skeleton-base/shine` | `color.skeleton-track`, `color.skeleton-glint` (`light` and `dark`) |
 | `--ui-radius` | `radius.base` |
 | `AtlairSwitch` 5px track and 3px thumb | `radius.switch`, `radius.switch-thumb` |
 | `.shell-panel` box-shadow | `shadow.shell` |
@@ -38,10 +38,10 @@ copied in so semantic tokens don't depend on Tailwind's palette.
 
 ## Added beyond the panel
 
-- `color.overlay` has no panel value (Nuxt UI supplied it), so it is a new scrim.
+- `color.scrim` has no panel value (Nuxt UI supplied it), so it is a new colour. The semantic `overlay` points at it.
 - Semantic `bg-inset`, `bg-frame`, `fg-frame`, `skeleton`, `skeleton-shine` and `shadow.shell` go past the
   ticket's list. Each one is a panel surface that components would otherwise read from a primitive.
-- `color.skeleton.shine.light` is `color-mix(slate-100 35%, white)` worked out to `#fafbfd`.
+- `color.skeleton-glint.light` is `color-mix(slate-100 35%, white)` worked out to `#fafbfd`.
 
 ## Intentionally dropped
 
@@ -54,3 +54,28 @@ copied in so semantic tokens don't depend on Tailwind's palette.
 - **Keyframes** (`skeleton-sweep`, `panel-progress-glide`, `vt-*`) and the `prefers-reduced-motion` rules:
   behaviour, not values. Reduced motion is handled once in the CSS output.
 - **`@font-face` rules and the woff2 files**: assets, shipped with the CSS output ticket.
+
+## Outputs
+
+`pnpm build` in `packages/tokens` runs Style Dictionary 4 and writes `dist/`:
+
+| File | Content |
+|---|---|
+| `tokens.css` | Every token as `--a-*`. Light semantic values sit in `:root`, dark ones under `.dark` and `[data-theme=dark]`. A `prefers-reduced-motion` block zeroes every duration. |
+| `theme.css` | Imports `tokens.css`, adds a `dark` variant for both selectors, and maps tokens to Tailwind 4 theme variables (`bg-atlair-950`, `text-fg-muted`, `shadow-shell`). Semantic names go in `@theme inline`, so utilities read `var(--a-*)` and follow the theme. |
+| `fonts.css`, `fonts/` | Spline Sans in two woff2 subsets, with `OFL.txt`. |
+| `tokens.ts` | Resolved primitive and semantic values, typed `as const`. |
+| `tokens.json` | The same values in DTCG shape, for agents. |
+
+The primitive names `skeleton-track`, `skeleton-glint`, `scrim` and `shadow.shell-light/dark` avoid a clash with
+the semantic names once both files load into one tree.
+
+## Contrast gate
+
+The build fails when a pair is under 4.5:1 (text) or 3:1 (UI), in light and in dark. Pairs are listed in
+`build/contrast.ts`. Left out on purpose:
+
+- `border` on `bg`: hairlines are decorative, and the panel's `slate-200` is about 1.2:1 against white.
+- `success` and `warning` on `bg`: they fill dots and badges that also carry text, so colour is never the only
+  signal. `#58b98a` and `#f4c96b` are well under 3:1 on white.
+- `scrim` and the shadows: they have alpha, and contrast needs an opaque pair.

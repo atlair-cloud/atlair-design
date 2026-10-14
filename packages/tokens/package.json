@@ -3,17 +3,27 @@
   "version": "0.0.0",
   "type": "module",
   "exports": {
-    ".": "./src/index.ts",
+    ".": "./dist/tokens.ts",
+    "./tokens.css": "./dist/tokens.css",
+    "./theme.css": "./dist/theme.css",
+    "./fonts.css": "./dist/fonts.css",
+    "./tokens.json": "./dist/tokens.json",
     "./primitive.json": "./src/tokens/primitive.json",
     "./semantic.light.json": "./src/tokens/semantic.light.json",
     "./semantic.dark.json": "./src/tokens/semantic.dark.json"
   },
   "scripts": {
+    "build": "node build/build.ts",
     "test": "node --test",
     "typecheck": "tsc -p tsconfig.json"
   },
   "devDependencies": {
+    "@tailwindcss/node": "^4.3.3",
     "@types/node": "^24.0.0",
+    "tailwindcss": "^4.3.3",
     "typescript": "^7.0.2"
+  },
+  "dependencies": {
+    "style-dictionary": "^4.4.0"
   }
 }

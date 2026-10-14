@@ -17,12 +17,12 @@
     "warning": { "$value": "{color.status.attention}" },
     "ring": { "$value": "{color.atlair.950}" },
     "surface-raised": { "$value": "{color.surface.light}" },
-    "overlay": { "$value": "{color.overlay.light}" },
-    "skeleton": { "$value": "{color.skeleton.base.light}" },
-    "skeleton-shine": { "$value": "{color.skeleton.shine.light}" }
+    "overlay": { "$value": "{color.scrim.light}" },
+    "skeleton": { "$value": "{color.skeleton-track.light}" },
+    "skeleton-shine": { "$value": "{color.skeleton-glint.light}" }
   },
   "shadow": {
     "$type": "shadow",
-    "shell": { "$value": "{shadow.shell.light}" }
+    "shell": { "$value": "{shadow.shell-light}" }
   }
 }

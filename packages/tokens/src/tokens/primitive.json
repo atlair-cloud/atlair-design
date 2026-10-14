@@ -78,17 +78,15 @@
         "dark": { "$value": "#f07a7a" }
       }
     },
-    "skeleton": {
-      "base": {
-        "light": { "$value": "#f1f5f9" },
-        "dark": { "$value": "#202327" }
-      },
-      "shine": {
-        "light": { "$value": "#fafbfd" },
-        "dark": { "$value": "#2c3035" }
-      }
+    "skeleton-track": {
+      "light": { "$value": "#f1f5f9" },
+      "dark": { "$value": "#202327" }
     },
-    "overlay": {
+    "skeleton-glint": {
+      "light": { "$value": "#fafbfd" },
+      "dark": { "$value": "#2c3035" }
+    },
+    "scrim": {
       "light": { "$value": "#1c191766" },
       "dark": { "$value": "#000000b3" }
     }
@@ -101,21 +99,19 @@
   },
   "shadow": {
     "$type": "shadow",
-    "shell": {
-      "light": {
-        "$value": [
-          { "color": "#d6d2cc", "offsetX": "0px", "offsetY": "0px", "blur": "0px", "spread": "1px" },
-          { "color": "#1c19170a", "offsetX": "0px", "offsetY": "1px", "blur": "2px", "spread": "0px" },
-          { "color": "#1c19172e", "offsetX": "0px", "offsetY": "16px", "blur": "40px", "spread": "-20px" }
-        ]
-      },
-      "dark": {
-        "$value": [
-          { "color": "#ffffff14", "offsetX": "0px", "offsetY": "0px", "blur": "0px", "spread": "1px" },
-          { "color": "#ffffff0a", "offsetX": "0px", "offsetY": "1px", "blur": "0px", "spread": "0px", "inset": true },
-          { "color": "#000000b3", "offsetX": "0px", "offsetY": "24px", "blur": "56px", "spread": "-24px" }
-        ]
-      }
+    "shell-light": {
+      "$value": [
+        { "color": "#d6d2cc", "offsetX": "0px", "offsetY": "0px", "blur": "0px", "spread": "1px" },
+        { "color": "#1c19170a", "offsetX": "0px", "offsetY": "1px", "blur": "2px", "spread": "0px" },
+        { "color": "#1c19172e", "offsetX": "0px", "offsetY": "16px", "blur": "40px", "spread": "-20px" }
+      ]
+    },
+    "shell-dark": {
+      "$value": [
+        { "color": "#ffffff14", "offsetX": "0px", "offsetY": "0px", "blur": "0px", "spread": "1px" },
+        { "color": "#ffffff0a", "offsetX": "0px", "offsetY": "1px", "blur": "0px", "spread": "0px", "inset": true },
+        { "color": "#000000b3", "offsetX": "0px", "offsetY": "24px", "blur": "56px", "spread": "-24px" }
+      ]
     }
   },
   "easing": {
