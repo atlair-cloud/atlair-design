@@ -5,7 +5,9 @@ Reka UI and Tailwind CSS 4. Read [docs/plan.md](docs/plan.md) before adding a pa
 
 ## Rules
 
-- **No comments in code**, including JSDoc and `<!-- -->` in templates. Names carry the meaning;
+- **No comments in code**, including JSDoc and `<!-- -->` in templates. `pnpm lint` fails on any, through
+  `eslint.config.mjs` and `scripts/check-no-comments.ts`; exceptions go in the ESLint config, never in
+  `eslint-disable` comments. Names carry the meaning;
   descriptions of props, slots and events go in the component's `docs.ts`; the reason behind a
   non-obvious choice goes in `docs/decisions/` or the PR description.
 - Apps never import `reka-ui`; only `@atlair/vue` does.
