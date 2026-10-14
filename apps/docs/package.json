@@ -26,7 +26,6 @@
     "@atlair/tokens": "workspace:*",
     "@atlair/vue": "workspace:*",
     "@nuxt/content": "^3.16.2",
-    "@nuxtjs/color-mode": "^4.0.1",
     "nuxt": "^4.6.1",
     "vue": "^3.5.44"
   }

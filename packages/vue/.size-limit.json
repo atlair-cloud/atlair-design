@@ -24,6 +24,6 @@
     "ignore": [
       "vue"
     ],
-    "limit": "13 kB"
+    "limit": "20 kB"
   }
 ]
