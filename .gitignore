@@ -7,3 +7,4 @@ dist
 .output
 storybook-static
 .nuxt
+.data

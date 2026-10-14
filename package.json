@@ -8,8 +8,8 @@
   },
   "scripts": {
     "build": "turbo run build",
-    "deploy": "wrangler deploy",
-    "deploy:check": "wrangler deploy --dry-run",
+    "deploy": "turbo run build --filter=@atlair/docs && wrangler deploy",
+    "deploy:check": "turbo run build --filter=@atlair/docs && wrangler deploy --dry-run",
     "dev": "turbo run dev",
     "lint": "oxlint && eslint && node scripts/check-no-comments.ts",
     "new:component": "node scripts/new-component.ts",
