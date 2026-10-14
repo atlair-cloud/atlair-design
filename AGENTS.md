@@ -14,7 +14,9 @@ Reka UI and Tailwind CSS 4. Read [docs/plan.md](docs/plan.md) before adding a pa
 - Components style from semantic tokens and `data-*` state only; no hard-coded colours.
 - Every component folder has `Component.vue`, `component.recipe.ts`, `docs.ts`, `examples/`,
   `Component.stories.ts` and `Component.test.ts`. Examples are the single source for Storybook, the docs
-  site and the manifest.
+  site and the manifest. `pnpm new:component <name>` generates the folder, the `exports` entry and the
+  resolver mapping; `docs.ts` is typed, so a missing or unknown prop, slot or event description fails
+  `vue-tsc`.
 - Shared prop names and values: `variant`, `size: 'sm' | 'md' | 'lg'`, `color`, `disabled`, `loading`,
   `ui`, `class`. Parts are named `A<Component><Part>`.
 - Vue: `<script setup lang="ts">`, `defineModel`, `useId`; single quotes, no semicolons.

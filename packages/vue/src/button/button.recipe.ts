@@ -1,7 +1,7 @@
 import type { VariantProps } from 'tailwind-variants'
 import { focusRing, sizes, tv } from '../internal/tv.ts'
 
-export const button = tv({
+export const buttonRecipe = tv({
   base: [
     'inline-flex items-center justify-center rounded-base bg-accent font-medium text-accent-fg transition-colors',
     'data-[disabled]:pointer-events-none data-[disabled]:opacity-50',
@@ -11,4 +11,4 @@ export const button = tv({
   defaultVariants: { size: 'md' },
 })
 
-export type ButtonVariants = VariantProps<typeof button>
+export type ButtonVariants = VariantProps<typeof buttonRecipe>
