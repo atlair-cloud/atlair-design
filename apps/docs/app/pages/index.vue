@@ -16,6 +16,7 @@ useSeoMeta({ title: 'Atlair Design', description: "Atlair's open-source Vue 3 de
 
 <template>
   <main id="content" tabindex="-1" class="mx-auto flex max-w-3xl flex-col items-center px-4 py-24 text-center outline-none">
+    <img src="/logo.png" alt="" width="96" height="96" class="mb-6 size-24" />
     <h1 class="text-4xl font-semibold tracking-tight text-accent sm:text-5xl">
       Accessible Vue components in Atlair's style
     </h1>

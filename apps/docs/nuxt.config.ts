@@ -18,6 +18,7 @@ export default defineNuxtConfig({
     head: {
       htmlAttrs: { lang: 'en' },
       title: 'Atlair Design',
+      link: [{ rel: 'icon', type: 'image/png', href: '/logo.png' }],
       meta: [{ name: 'description', content: "Atlair's open-source Vue 3 design system." }],
     },
   },

@@ -4,6 +4,9 @@
 /fonts/*
   Cache-Control: public, max-age=2592000
 
+/logo.png
+  Cache-Control: public, max-age=2592000
+
 /*
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
