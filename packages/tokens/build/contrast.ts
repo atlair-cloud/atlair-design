@@ -15,6 +15,8 @@ export const pairs: Pair[] = [
   { foreground: 'fg-muted', background: 'surface-raised', minimum: text },
   { foreground: 'fg-frame', background: 'bg-frame', minimum: text },
   { foreground: 'accent-fg', background: 'accent', minimum: text },
+  { foreground: 'bg', background: 'fg', minimum: text },
+  { foreground: 'accent-fg', background: 'danger', minimum: text },
   { foreground: 'danger', background: 'bg', minimum: text },
   { foreground: 'danger', background: 'surface-raised', minimum: text },
   { foreground: 'accent', background: 'bg', minimum: ui },

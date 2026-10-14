@@ -7,6 +7,6 @@ import { AVisuallyHidden, type AVisuallyHiddenProps } from '@atlair/vue/visually
 export const components = [AButton, APrimitive, AVisuallyHidden, all.AButton, all.APrimitive, all.AVisuallyHidden]
 export const resolver = AtlairResolver().resolve
 export const size: ButtonVariants['size'] = 'lg'
-export const classes: string = buttonRecipe({ size })
+export const classes: string = buttonRecipe({ size }).base()
 export type PrimitiveProps = APrimitiveProps
 export type HiddenProps = AVisuallyHiddenProps

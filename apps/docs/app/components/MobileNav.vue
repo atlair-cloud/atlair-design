@@ -12,7 +12,7 @@ watch(() => route.path, () => dialog.value?.close())
   <div class="lg:hidden">
     <AButton
       size="sm"
-      class="border border-border bg-transparent text-fg hover:bg-bg-subtle"
+      variant="outline" color="neutral"
       aria-label="Open navigation"
       @click="dialog?.showModal()"
     >
@@ -27,7 +27,7 @@ watch(() => route.path, () => dialog.value?.close())
       <div class="mb-4 flex justify-end">
         <AButton
           size="sm"
-          class="border border-border bg-transparent text-fg hover:bg-bg-subtle"
+          variant="outline" color="neutral"
           @click="dialog?.close()"
         >
           Close

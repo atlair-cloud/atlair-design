@@ -50,11 +50,11 @@ const next = computed(() => surround.value?.[1])
         <ContentRenderer v-if="page" :value="page" />
       </article>
       <div class="mt-12 flex items-center justify-between gap-4 border-t border-border pt-6">
-        <AButton v-if="previous" as-child size="sm" class="border border-border bg-transparent text-fg hover:bg-bg-subtle">
+        <AButton v-if="previous" as-child size="sm" variant="outline" color="neutral">
           <NuxtLink :to="previous.path">&larr; {{ previous.title }}</NuxtLink>
         </AButton>
         <span v-else />
-        <AButton v-if="next" as-child size="sm" class="border border-border bg-transparent text-fg hover:bg-bg-subtle">
+        <AButton v-if="next" as-child size="sm" variant="outline" color="neutral">
           <NuxtLink :to="next.path">{{ next.title }} &rarr;</NuxtLink>
         </AButton>
       </div>

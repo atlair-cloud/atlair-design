@@ -17,6 +17,10 @@
       "types": "./dist/types/button/index.d.ts",
       "import": "./dist/button.js"
     },
+    "./icon-button": {
+      "types": "./dist/types/icon-button/index.d.ts",
+      "import": "./dist/icon-button.js"
+    },
     "./primitive": {
       "types": "./dist/types/primitive/index.d.ts",
       "import": "./dist/primitive.js"
