@@ -17,6 +17,18 @@
       "types": "./dist/types/button/index.d.ts",
       "import": "./dist/button.js"
     },
+    "./field": {
+      "types": "./dist/types/field/index.d.ts",
+      "import": "./dist/field.js"
+    },
+    "./fieldset": {
+      "types": "./dist/types/fieldset/index.d.ts",
+      "import": "./dist/fieldset.js"
+    },
+    "./form": {
+      "types": "./dist/types/form/index.d.ts",
+      "import": "./dist/form.js"
+    },
     "./icon-button": {
       "types": "./dist/types/icon-button/index.d.ts",
       "import": "./dist/icon-button.js"
@@ -69,6 +81,7 @@
     "@size-limit/preset-small-lib": "^14.2.0",
     "@storybook/vue3-vite": "^10.6.2",
     "@tailwindcss/vite": "^4.3.3",
+    "@tanstack/vue-form": "^1.33.5",
     "@types/node": "^24.0.0",
     "@vitejs/plugin-vue": "^6.0.10",
     "size-limit": "^14.2.0",
@@ -76,9 +89,11 @@
     "tailwindcss": "^4.3.3",
     "typescript": "^6.0.3",
     "unplugin-vue-components": "^32.1.0",
+    "valibot": "^1.5.0",
     "vite": "^8.3.4",
     "vue": "^3.5.44",
     "vue-component-type-helpers": "^3.3.13",
-    "vue-tsc": "^3.3.13"
+    "vue-tsc": "^3.3.13",
+    "zod": "^4.6.7"
   }
 }
