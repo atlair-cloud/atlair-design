@@ -55,7 +55,7 @@ atlair-design/
     mcp/           @atlair/mcp          MCP server over the published manifest (Wave 2)
   apps/
     storybook/     Storybook 10 workbench: every state, a11y, visual and interaction tests, MCP for agents
-    docs/          VitePress site for people: guides, examples, props tables, llms.txt
+    docs/          Nuxt 4 + Nuxt Content site for people, laid out like shadcn/ui: guides, examples, llms.txt
   scripts/         manifest build, no-comments check
   .changeset/      versioning and changelogs
 ```
@@ -248,18 +248,20 @@ Enforcement:
 Two tools are needed because they serve different jobs. Both read the same example files, so nothing is
 written twice.
 
-| | **Storybook 10** (`@storybook/vue3-vite` 10.6.2) | **VitePress** (1.6.4) |
+| | **Storybook 10** (`@storybook/vue3-vite` 10.6.2) | **Docs site**: Nuxt 4.6 + Nuxt Content 3.16, shadcn/ui layout (section 6a) |
 |---|---|---|
 | Job | Workbench: every state of every component, isolated | Docs site that people read before installing |
 | Audience | Contributors, reviewers, coding agents | People adopting the library |
-| What it gives | Controls, light/dark and RTL toolbars, `addon-a11y` (axe), `addon-vitest` (stories run as browser tests), screenshot tests, deployed preview per PR, `addon-mcp` (10.6.2, lists `vue3` as supported) | Fast Vue-native site with the same Vite build, Markdown plus live `.vue` examples, search, the guides (install, theming, tokens, migration from Nuxt UI) |
+| What it gives | Controls, light/dark and RTL toolbars, `addon-a11y` (axe), `addon-vitest` (stories run as browser tests), screenshot tests, deployed preview per PR, `addon-mcp` (10.6.2, lists `vue3` as supported) | Markdown pages with live `.vue` examples, Preview/Code tabs, ⌘K search, the guides (install, theming, tokens, migration from Nuxt UI); its own chrome is built from `@atlair/vue` |
 | URL | `storybook.design.atlair.cloud` | `design.atlair.cloud` |
 
 Rejected options:
 - **Histoire** has been in `1.0.0-beta.1` since January 2026 with no release since, which is too slow for
   a base we'd depend on.
 - **Storybook alone as the docs** is weaker for long-form guides and harder to theme as an Atlair site.
-- **VitePress alone** has no isolated state matrix, a11y panel, interaction tests or MCP.
+- **VitePress** is the fastest to start, but its default theme looks like Vue's docs, not shadcn's.
+  Matching shadcn means replacing its whole layout, so we'd be fighting the theme instead of using it.
+- **Any docs site alone** has no isolated state matrix, a11y panel, interaction tests or MCP.
 
 One source of truth for examples:
 
@@ -277,8 +279,8 @@ packages/vue/src/button/
 ```
 
 - Storybook stories render the example files.
-- A VitePress page mounts the same files with `<Example name="button/Loading" />`, which shows the live
-  render with its source underneath.
+- A docs page mounts the same files with `::example{name="button/Loading"}`, which shows Preview and
+  Code tabs (section 6a).
 - The manifest (section 7) embeds the source as text.
 
 An example therefore can't drift from what it shows, because it is the code people copy.
@@ -287,6 +289,90 @@ An example therefore can't drift from what it shows, because it is the code peop
 manifests React-first. The first spike confirms that Vue manifests come out complete with
 `vue-component-meta`. If they don't, `@atlair/mcp` (section 7) is the agent path, and Storybook is only
 for people.
+
+## 6a. The docs site looks like shadcn/ui
+
+We take shadcn/ui's **layout and page patterns**, which are what make it pleasant, and fill them with
+**Atlair's identity**: Spline Sans, the navy `atlair` ramp, Atlair's radius and frame. shadcn/ui is
+MIT, so learning from its structure is fine, but we don't copy its logo, wording or exact styles. A
+visitor should feel at home and still see that it's Atlair.
+
+### Stack
+
+We use what shadcn-vue uses for its own site (`unovue/shadcn-vue`, `apps/v4`): **Nuxt 4 + Nuxt Content
+3**.
+- Nuxt Content provides Markdown with Vue components inside (MDC), a content database, and search data.
+- `nuxt-shiki` highlights code with a light and a dark theme.
+- `nuxt-og-image` makes a share image per page.
+- `@nuxtjs/color-mode` handles the theme.
+- `nuxt-llms` generates `llms.txt` and `llms-full.txt`.
+- The site prerenders to static files and is deployed on Cloudflare like atlair-mail's site.
+
+The site's own chrome is built from `@atlair/vue`: the sidebar, `ACommandPalette` for ⌘K, `ATabs`,
+`ACodeBlock`, `ACopyButton`, `ADropdownMenu` and `AScrollArea`. That makes the docs site the
+library's first real user. If something is awkward to build with our components, we fix the component.
+
+shadcn's React site uses Next.js with Fumadocs, which is React-only, so its stack doesn't apply here.
+
+### Layout (desktop)
+
+```
+┌──────────────────────────────────────────────────────────────────────────────┐
+│ ◆ Atlair Design   Docs  Components  Tokens  Themes  Agents   [⌘K Search…] ★ ◐│  sticky header, blurred bg
+├────────────┬────────────────────────────────────────────────┬────────────────┤
+│ Getting    │ Docs › Components › Button                     │ On this page   │
+│  Started   │ Button                    [Copy page ▾] [‹][›] │  Installation  │
+│  Intro     │ Starts an action. Use a link for navigation.   │  Usage         │
+│  Install   │                                                │  Examples      │
+│  Theming   │ ┌ Preview │ Code ───────────────── ⧉ ┐          │   Loading      │
+│  Agents    │ │                                    │          │   As link      │
+│ Components │ │          [ Save changes ]          │          │  API reference │
+│  Accordion │ │                                    │          │  Accessibility │
+│  Button  ● │ └────────────────────────────────────┘          │                │
+│  …         │ Installation  [pnpm|npm|yarn|bun]               │                │
+│            │ $ pnpm add @atlair/vue                     ⧉   │                │
+│            │ Usage · Examples · API reference · A11y        │                │
+└────────────┴────────────────────────────────────────────────┴────────────────┘
+```
+
+| shadcn/ui pattern | Our version |
+|---|---|
+| Sticky header with blur, top nav, ⌘K search, GitHub stars, theme toggle | The same, with the Atlair mark and Spline Sans. The theme toggle uses `useTheme()` from Wave 0 |
+| Left sidebar grouped by section, with the active item marked | Sections are Getting Started, Components, Patterns (Wave 2) and Tokens. It collapses into a sheet below `lg` |
+| Breadcrumb, title, one-line description, previous/next buttons | The title and description come from `docs.ts` (`summary`), so they match the manifest |
+| **Preview / Code tabs** for every example | `::example` shows the live example on a subtle grid backdrop, and its source in a copyable code block |
+| Package-manager tabs on install commands | pnpm, npm, yarn and bun. The chosen one is remembered across pages |
+| Right-hand "On this page" with scroll-spy | Generated from page headings |
+| "Copy page" menu: copy as Markdown, view as Markdown, open in ChatGPT or Claude | The same. It serves the `/components/button.md` page from section 7, so the agent features from section 7 are one click away for people too |
+| API reference tables | Generated from `vue-component-meta` plus `docs.ts`: prop, type, default and description, then slots and events |
+| Themes page with live colour editing | A **Tokens** page with swatches and contrast scores for every token, and a theme builder that outputs a `tokens.css` override |
+| Blocks (full page sections) | **Patterns**, later: settings page, data table page and setup guide, lifted from atlair-mail's panel |
+| Clean typography, generous whitespace, thin borders, muted secondary text | The same principles, written as semantic tokens in `@atlair/tokens` |
+
+### Pages
+
+| Route | Content |
+|---|---|
+| `/` | Landing: a headline, `pnpm add @atlair/vue`, and a live grid of real components (form, table, dialog, toasts) that doubles as a demo |
+| `/docs` | Introduction: principles, Reka plus the Base UI conventions, who it's for |
+| `/docs/installation` | Vite and Nuxt setup, the Tailwind `@source` line, CSS imports, auto-import resolver |
+| `/docs/theming` | Tokens, dark mode, overriding with `ui` and `class` |
+| `/docs/agents` | `llms.txt`, `manifest.json`, `npx @atlair/mcp` setup for Claude Code and other agents, the shipped skill |
+| `/docs/migration/nuxt-ui` | `U*` → `A*` mapping, from the atlair-mail migration |
+| `/components/<name>` | One page per component, in the fixed order: summary, preview, installation, usage, examples, API reference, accessibility, do/don't |
+| `/components/<name>.md` | The same page as plain Markdown for agents |
+| `/tokens` | Every token with its swatch, value and contrast, in both themes |
+
+### Quality bar
+
+- Lighthouse scores of at least 95 for performance and accessibility, and 100 for best practices.
+- Every page is prerendered and works without JavaScript, except for the live previews.
+- There is no layout shift from fonts: Spline Sans is preloaded with `font-display: swap`.
+- Keyboard: ⌘K opens search, `/` focuses search, and the sidebar and table of contents can be reached by
+  Tab with a "skip to content" link first.
+- Phone layout: the sidebar becomes a sheet, the table of contents goes into a menu at the top, and
+  Preview/Code tabs stay full width.
+- Respects `prefers-reduced-motion` and `prefers-color-scheme`.
 
 ## 7. Built for both people and agents
 
@@ -351,7 +437,7 @@ Rules that make the library predictable for both:
    on those four:
    - `docs.ts` and examples
    - Storybook with the a11y, vitest and mcp addons (including the Vue manifest spike)
-   - VitePress
+   - the docs site shell (section 6a)
    - the manifest, `llms.txt` and the generated Markdown pages
 
    Then publish `0.1.0`. Every later component copies this setup.
@@ -369,4 +455,6 @@ Rules that make the library predictable for both:
 - Ark UI: https://ark-ui.com
 - Alternatives overview: https://designrevision.com/alternatives/base-ui
 - Storybook AI and MCP: https://storybook.js.org/docs/ai/mcp/api and https://storybook.js.org/releases/10.3
+- shadcn-vue docs stack (Nuxt + Nuxt Content): https://github.com/unovue/shadcn-vue/tree/dev/apps/v4
+- shadcn/ui docs: https://ui.shadcn.com/docs
 - Storybook Vue 3 with Vite: https://newreleases.io/project/npm/@storybook/vue3-vite/release/10.5.0
