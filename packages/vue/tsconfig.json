@@ -1,7 +1,17 @@
 {
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
-    "types": ["node"]
+    "types": [
+      "node"
+    ]
   },
-  "include": ["src"]
+  "include": [
+    "src",
+    "tests",
+    "build",
+    "vite.config.ts"
+  ],
+  "exclude": [
+    "tests/fixtures"
+  ]
 }
