@@ -9,7 +9,7 @@ const src = (path: string) => fileURLToPath(new URL(`./src/${path}`, import.meta
 const externals = [...Object.keys(pkg.dependencies), ...Object.keys(pkg.peerDependencies)]
 
 export default defineConfig({
-  plugins: [vue()],
+  plugins: [vue({ template: { compilerOptions: { comments: false } } })],
   build: {
     target: 'esnext',
     emptyOutDir: true,
