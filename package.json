@@ -10,6 +10,7 @@
     "build": "turbo run build",
     "dev": "turbo run dev",
     "lint": "oxlint && eslint && node scripts/check-no-comments.ts",
+    "new:component": "node scripts/new-component.ts",
     "size": "turbo run size",
     "test": "turbo run test",
     "typecheck": "turbo run typecheck"

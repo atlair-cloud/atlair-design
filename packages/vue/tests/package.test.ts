@@ -8,6 +8,7 @@ import tailwindcss from '@tailwindcss/vite'
 import vue from '@vitejs/plugin-vue'
 import { build, type Rollup } from 'vite'
 import pkg from '../package.json' with { type: 'json' }
+import { componentEntries } from '../src/entries.ts'
 import { AtlairResolver } from '../src/resolver.ts'
 
 const root = fileURLToPath(new URL('../', import.meta.url))
@@ -102,6 +103,6 @@ describe('sample Vite app', async () => {
 
   it('keeps the source of truth for the build output', async () => {
     const manifest = JSON.parse(await readFile(`${root}dist/manifest.json`, 'utf8'))
-    assert.deepEqual(manifest.components.map((c: { name: string }) => c.name).sort(), ['AButton', 'APrimitive', 'AVisuallyHidden'])
+    assert.deepEqual(manifest.components.map((c: { name: string }) => c.name).sort(), Object.keys(componentEntries).sort())
   })
 })

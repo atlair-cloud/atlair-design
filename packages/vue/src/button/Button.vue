@@ -3,7 +3,7 @@ import { Primitive } from 'reka-ui'
 import { computed } from 'vue'
 import { cn } from '../internal/cn.ts'
 import type { Size } from '../internal/tv.ts'
-import { button } from './button.recipe.ts'
+import { buttonRecipe } from './button.recipe.ts'
 
 const props = withDefaults(
   defineProps<{
@@ -16,7 +16,7 @@ const props = withDefaults(
   { as: 'button', asChild: false, size: 'md', disabled: false, class: undefined },
 )
 
-const classes = computed(() => cn(button({ size: props.size }), props.class))
+const classes = computed(() => cn(buttonRecipe({ size: props.size }), props.class))
 </script>
 
 <template>
