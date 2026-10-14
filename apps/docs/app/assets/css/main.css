@@ -1,0 +1,5 @@
+@import 'tailwindcss';
+@import '@atlair/tokens/theme.css';
+@import '@atlair/tokens/fonts.css';
+@import '@atlair/vue/style.css';
+@plugin '@tailwindcss/typography';

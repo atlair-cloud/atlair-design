@@ -5,7 +5,7 @@ import { parse } from '@vue/compiler-sfc'
 type Node = { type: number; loc: { start: { line: number; column: number } }; children?: unknown[] }
 
 const commentNode = 3
-const skipped = new Set(['node_modules', 'dist', '.turbo'])
+const skipped = new Set(['node_modules', 'dist', '.turbo', '.nuxt', '.output'])
 const root = resolve(import.meta.dirname, '..')
 
 export const findTemplateComments = (source: string, filename: string) => {

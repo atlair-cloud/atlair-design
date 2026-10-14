@@ -6,7 +6,7 @@ const plugins = { 'no-comments': noComments }
 const rules = { 'no-comments/disallowComments': ['error', { allow: ['(?!)'] }] }
 
 export default [
-  { ignores: ['**/dist/**', '**/node_modules/**', '**/.turbo/**', 'scripts/tests/fixtures/**'] },
+  { ignores: ['**/dist/**', '**/node_modules/**', '**/.turbo/**', '**/.nuxt/**', '**/.output/**', 'scripts/tests/fixtures/**'] },
   { linterOptions: { noInlineConfig: true, reportUnusedDisableDirectives: 'off' } },
   {
     files: ['**/*.ts'],

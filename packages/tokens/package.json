@@ -8,6 +8,7 @@
     "./theme.css": "./dist/theme.css",
     "./fonts.css": "./dist/fonts.css",
     "./tokens.json": "./dist/tokens.json",
+    "./contrast": "./build/contrast.ts",
     "./primitive.json": "./src/tokens/primitive.json",
     "./semantic.light.json": "./src/tokens/semantic.light.json",
     "./semantic.dark.json": "./src/tokens/semantic.dark.json"

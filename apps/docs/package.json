@@ -2,11 +2,32 @@
   "name": "@atlair/docs",
   "version": "0.0.0",
   "private": true,
+  "type": "module",
   "scripts": {
+    "build": "nuxt generate",
+    "dev": "nuxt dev",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare",
+    "typecheck": "nuxt typecheck",
     "deploy": "wrangler deploy",
-    "check": "wrangler deploy --dry-run"
+    "check": "wrangler deploy --dry-run",
+    "test": "node --test"
   },
   "devDependencies": {
+    "@tailwindcss/typography": "^0.5.20",
+    "@tailwindcss/vite": "^4.3.3",
+    "@types/node": "^24.19.2",
+    "tailwindcss": "^4.3.3",
+    "typescript": "^6.0.3",
+    "vue-tsc": "^3.3.13",
     "wrangler": "^4.151.0"
+  },
+  "dependencies": {
+    "@atlair/tokens": "workspace:*",
+    "@atlair/vue": "workspace:*",
+    "@nuxt/content": "^3.16.2",
+    "@nuxtjs/color-mode": "^4.0.1",
+    "nuxt": "^4.6.1",
+    "vue": "^3.5.44"
   }
 }
