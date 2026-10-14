@@ -1,0 +1,28 @@
+{
+  "$schema": "https://www.designtokens.org/schemas/2025.10/format.json",
+  "color": {
+    "$type": "color",
+    "bg": { "$value": "{color.canvas.light}" },
+    "bg-subtle": { "$value": "{color.slate.50}" },
+    "bg-inset": { "$value": "{color.canvas-subtle.light}" },
+    "bg-frame": { "$value": "{color.frame.light}" },
+    "fg": { "$value": "{color.text.body}" },
+    "fg-muted": { "$value": "{color.slate.500}" },
+    "fg-frame": { "$value": "{color.frame-chrome.light}" },
+    "border": { "$value": "{color.slate.200}" },
+    "accent": { "$value": "{color.atlair.950}" },
+    "accent-fg": { "$value": "{color.surface.light}" },
+    "danger": { "$value": "{color.status.error.light}" },
+    "success": { "$value": "{color.status.live}" },
+    "warning": { "$value": "{color.status.attention}" },
+    "ring": { "$value": "{color.atlair.950}" },
+    "surface-raised": { "$value": "{color.surface.light}" },
+    "overlay": { "$value": "{color.overlay.light}" },
+    "skeleton": { "$value": "{color.skeleton.base.light}" },
+    "skeleton-shine": { "$value": "{color.skeleton.shine.light}" }
+  },
+  "shadow": {
+    "$type": "shadow",
+    "shell": { "$value": "{shadow.shell.light}" }
+  }
+}

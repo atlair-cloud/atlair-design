@@ -3,7 +3,10 @@
   "version": "0.0.0",
   "type": "module",
   "exports": {
-    ".": "./src/index.ts"
+    ".": "./src/index.ts",
+    "./primitive.json": "./src/tokens/primitive.json",
+    "./semantic.light.json": "./src/tokens/semantic.light.json",
+    "./semantic.dark.json": "./src/tokens/semantic.dark.json"
   },
   "scripts": {
     "test": "node --test",

@@ -1,0 +1,28 @@
+{
+  "$schema": "https://www.designtokens.org/schemas/2025.10/format.json",
+  "color": {
+    "$type": "color",
+    "bg": { "$value": "{color.canvas.dark}" },
+    "bg-subtle": { "$value": "{color.slate-dark.50}" },
+    "bg-inset": { "$value": "{color.canvas-subtle.dark}" },
+    "bg-frame": { "$value": "{color.frame.dark}" },
+    "fg": { "$value": "{color.slate-dark.700}" },
+    "fg-muted": { "$value": "{color.slate-dark.500}" },
+    "fg-frame": { "$value": "{color.frame-chrome.dark}" },
+    "border": { "$value": "{color.slate-dark.200}" },
+    "accent": { "$value": "{color.atlair-dark.950}" },
+    "accent-fg": { "$value": "{color.surface.dark}" },
+    "danger": { "$value": "{color.status.error.dark}" },
+    "success": { "$value": "{color.status.live}" },
+    "warning": { "$value": "{color.status.attention}" },
+    "ring": { "$value": "{color.atlair-dark.950}" },
+    "surface-raised": { "$value": "{color.surface.dark}" },
+    "overlay": { "$value": "{color.overlay.dark}" },
+    "skeleton": { "$value": "{color.skeleton.base.dark}" },
+    "skeleton-shine": { "$value": "{color.skeleton.shine.dark}" }
+  },
+  "shadow": {
+    "$type": "shadow",
+    "shell": { "$value": "{shadow.shell.dark}" }
+  }
+}
