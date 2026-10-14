@@ -8,6 +8,8 @@
   },
   "scripts": {
     "build": "turbo run build",
+    "deploy": "wrangler deploy",
+    "deploy:check": "wrangler deploy --dry-run",
     "dev": "turbo run dev",
     "lint": "oxlint && eslint && node scripts/check-no-comments.ts",
     "new:component": "node scripts/new-component.ts",
@@ -22,6 +24,7 @@
     "turbo": "^2.11.7",
     "typescript": "^6.0.3",
     "typescript-eslint": "^8.71.2",
-    "vue-eslint-parser": "^10.4.1"
+    "vue-eslint-parser": "^10.4.1",
+    "wrangler": "^4.151.0"
   }
 }

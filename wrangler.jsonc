@@ -3,7 +3,7 @@
   "name": "atlair-design-docs",
   "compatibility_date": "2026-10-14",
   "assets": {
-    "directory": "./.output/public",
+    "directory": "./apps/docs/placeholder",
     "html_handling": "auto-trailing-slash",
     "not_found_handling": "404-page"
   },
