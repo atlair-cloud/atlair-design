@@ -7,7 +7,6 @@
     "build": "nuxt generate",
     "dev": "nuxt dev",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare",
     "typecheck": "nuxt typecheck",
     "deploy": "wrangler deploy",
     "check": "wrangler deploy --dry-run",
