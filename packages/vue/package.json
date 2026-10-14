@@ -25,6 +25,18 @@
       "types": "./dist/types/visually-hidden/index.d.ts",
       "import": "./dist/visually-hidden.js"
     },
+    "./app": {
+      "types": "./dist/types/app/index.d.ts",
+      "import": "./dist/app.js"
+    },
+    "./config-provider": {
+      "types": "./dist/types/config-provider/index.d.ts",
+      "import": "./dist/config-provider.js"
+    },
+    "./theme": {
+      "types": "./dist/types/theme/index.d.ts",
+      "import": "./dist/theme.js"
+    },
     "./resolver": {
       "types": "./dist/types/resolver.d.ts",
       "import": "./dist/resolver.js"

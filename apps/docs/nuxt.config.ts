@@ -1,11 +1,11 @@
+import { createThemeScript } from '@atlair/vue/theme'
 import tailwindcss from '@tailwindcss/vite'
 
 export default defineNuxtConfig({
   compatibilityDate: '2026-10-14',
-  modules: ['@nuxt/content', '@nuxtjs/color-mode'],
+  modules: ['@nuxt/content'],
   css: ['~/assets/css/main.css'],
   vite: { plugins: [tailwindcss()] },
-  colorMode: { classSuffix: '', dataValue: 'theme', preference: 'system', fallback: 'light' },
   content: {
     experimental: { sqliteConnector: 'native' },
     build: {
@@ -19,6 +19,7 @@ export default defineNuxtConfig({
       htmlAttrs: { lang: 'en' },
       title: 'Atlair Design',
       link: [{ rel: 'icon', type: 'image/png', href: '/logo.png' }],
+      script: [{ innerHTML: createThemeScript(), tagPosition: 'head' }],
       meta: [{ name: 'description', content: "Atlair's open-source Vue 3 design system." }],
     },
   },

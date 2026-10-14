@@ -1,6 +1,9 @@
 export const entries = {
+  app: ['AApp'],
   button: ['AButton'],
+  'config-provider': ['AConfigProvider'],
   primitive: ['APrimitive'],
+  theme: [],
   'visually-hidden': ['AVisuallyHidden'],
 } as const
 

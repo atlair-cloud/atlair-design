@@ -1,3 +1,6 @@
 export * from './button/index.ts'
 export * from './primitive/index.ts'
 export * from './visually-hidden/index.ts'
+export * from './app/index.ts'
+export * from './config-provider/index.ts'
+export * from './theme/index.ts'
