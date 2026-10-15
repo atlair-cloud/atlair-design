@@ -19,6 +19,7 @@
 @utility bg-dots {
   background-image: radial-gradient(color-mix(in oklab, var(--a-fg-frame) 14%, transparent) 1px, transparent 1.25px);
   background-size: 12px 12px;
+  background-attachment: fixed;
 }
 
 @utility eyebrow {
@@ -53,6 +54,10 @@ html[data-theme='dark'] .shiki span {
   --tw-prose-quotes: var(--a-fg-muted);
   --tw-prose-td-borders: var(--a-border);
   --tw-prose-th-borders: var(--a-border);
+}
+
+.prose-atlair :where(h2, h3, h4) {
+  scroll-margin-top: 5rem;
 }
 
 .prose-atlair :where(h2) {

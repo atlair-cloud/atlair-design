@@ -50,7 +50,7 @@ const links = [
       Components use the semantic tokens. The ratio is each colour against the background of its own theme.
     </p>
 
-    <h2 id="semantic" class="mt-12 scroll-mt-6 border-t border-border pt-8 text-xl font-semibold text-fg">
+    <h2 id="semantic" class="mt-12 scroll-mt-20 border-t border-border pt-8 text-xl font-semibold text-fg">
       Semantic colours
     </h2>
     <div class="mt-5 grid gap-4 2xl:grid-cols-2">
@@ -104,7 +104,7 @@ const links = [
       </section>
     </div>
 
-    <h2 id="primitive" class="mt-12 scroll-mt-6 border-t border-border pt-8 text-xl font-semibold text-fg">
+    <h2 id="primitive" class="mt-12 scroll-mt-20 border-t border-border pt-8 text-xl font-semibold text-fg">
       Primitive colours
     </h2>
     <section v-for="ramp in ramps" :key="ramp.name" class="mt-6">
@@ -123,7 +123,7 @@ const links = [
     </section>
 
     <section v-for="[title, group] in other" :key="title">
-      <h2 :id="title.toLowerCase()" class="mt-12 scroll-mt-6 border-t border-border pt-8 text-xl font-semibold text-fg">
+      <h2 :id="title.toLowerCase()" class="mt-12 scroll-mt-20 border-t border-border pt-8 text-xl font-semibold text-fg">
         {{ title }}
       </h2>
       <ul class="mt-5 divide-y divide-border overflow-hidden rounded-lg border border-border">

@@ -13,7 +13,7 @@ const route = useRoute()
 </script>
 
 <template>
-  <header class="text-fg-frame">
+  <header class="sticky top-0 z-40 bg-bg-frame bg-dots text-fg-frame">
     <div class="mx-auto flex h-16 max-w-[88rem] items-center gap-3 px-4 sm:px-6">
       <MobileNav />
       <NuxtLink to="/" class="flex items-center gap-2.5 rounded-base">
