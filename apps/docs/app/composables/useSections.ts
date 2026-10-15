@@ -8,5 +8,8 @@ export const useSections = () =>
     const docs = tree.find((item) => item.path === '/docs')
     const children = (docs?.children ?? []).filter((item) => item.path !== '/docs')
     const items = docs ? [{ title: 'Introduction', path: '/docs' }, ...children] : []
-    return [{ title: 'Getting started', items }] satisfies Section[]
+    return [
+      { title: 'Getting started', items },
+      { title: 'Foundations', items: [{ title: 'Tokens', path: '/tokens' }] },
+    ] satisfies Section[]
   })

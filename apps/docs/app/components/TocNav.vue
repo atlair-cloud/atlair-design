@@ -27,13 +27,16 @@ onBeforeUnmount(() => observer?.disconnect())
 
 <template>
   <nav v-if="flat.length > 0" aria-label="On this page" class="text-sm">
-    <h2 class="mb-2 text-xs font-medium uppercase tracking-wide text-fg-muted">On this page</h2>
-    <ul class="flex flex-col gap-1.5">
-      <li v-for="link in flat" :key="link.id" :class="link.depth > 2 && 'pl-3'">
+    <h2 class="eyebrow mb-3">On this page</h2>
+    <ul class="flex flex-col border-l border-border">
+      <li v-for="link in flat" :key="link.id">
         <a
           :href="`#${link.id}`"
-          class="text-fg-muted hover:text-fg"
-          :class="active === link.id && 'font-medium text-fg'"
+          class="-ml-px block border-l py-1 pr-2 text-fg-muted transition-colors hover:text-fg"
+          :class="[
+            link.depth > 2 ? 'pl-6' : 'pl-3',
+            active === link.id ? 'border-fg font-medium text-fg' : 'border-transparent',
+          ]"
           :aria-current="active === link.id ? 'location' : undefined"
         >
           {{ link.text }}

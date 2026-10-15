@@ -34,45 +34,67 @@ const other = [
   ['Easing', tokens.primitive.easing],
   ['Duration', tokens.primitive.duration],
 ] as const
+
+const links = [
+  { id: 'semantic', text: 'Semantic colours', depth: 2 },
+  { id: 'primitive', text: 'Primitive colours', depth: 2 },
+  ...other.map(([title]) => ({ id: title.toLowerCase(), text: title, depth: 2 })),
+]
 </script>
 
 <template>
-  <main id="content" tabindex="-1" class="mx-auto max-w-[88rem] px-4 py-8 outline-none lg:px-6">
-    <h1 class="text-3xl font-semibold tracking-tight text-accent">Tokens</h1>
-    <p class="mt-2 max-w-2xl text-lg text-fg-muted">
+  <DocsShell>
+    <p class="eyebrow">Foundations</p>
+    <h1 class="mt-3 text-4xl font-semibold tracking-tight text-fg sm:text-[2.75rem]">Tokens</h1>
+    <p class="mt-3 max-w-2xl text-lg text-fg-muted">
       Components use the semantic tokens. The ratio is each colour against the background of its own theme.
     </p>
 
-    <h2 class="mt-10 text-xl font-semibold">Semantic colours</h2>
-    <div class="mt-4 grid gap-4 lg:grid-cols-2">
+    <h2 id="semantic" class="mt-12 scroll-mt-6 border-t border-border pt-8 text-xl font-semibold text-fg">
+      Semantic colours
+    </h2>
+    <div class="mt-5 grid gap-4 2xl:grid-cols-2">
       <section
         v-for="theme in themes"
         :key="theme.name"
-        class="rounded-base border p-4"
+        class="overflow-hidden rounded-lg"
         :style="{
           backgroundColor: String(theme.values.bg!.$value),
           color: String(theme.values.fg!.$value),
-          borderColor: String(theme.values.border!.$value),
+          boxShadow: `0 0 0 1px ${String(theme.values.border!.$value)}`,
         }"
       >
-        <h3 class="mb-3 text-sm font-medium" :style="{ color: String(theme.values['fg-muted']!.$value) }">
-          {{ theme.name }}
-        </h3>
-        <ul class="flex flex-col gap-2">
-          <li v-for="name in names" :key="name" class="flex items-center gap-3 text-sm">
+        <header
+          class="flex items-center justify-between border-b px-5 py-3"
+          :style="{ borderColor: String(theme.values.border!.$value) }"
+        >
+          <h3 class="font-semibold">{{ theme.name }}</h3>
+          <span class="font-mono text-xs" :style="{ color: String(theme.values['fg-muted']!.$value) }">
+            {{ names.length }} tokens
+          </span>
+        </header>
+        <ul>
+          <li
+            v-for="name in names"
+            :key="name"
+            class="flex items-center gap-3 border-b px-5 py-2 text-sm last:border-b-0"
+            :style="{ borderColor: String(theme.values.border!.$value) }"
+          >
             <span
-              class="size-8 shrink-0 rounded-base border"
+              class="size-6 shrink-0 rounded-[3px]"
               :style="{
                 backgroundColor: String(theme.values[name]!.$value),
-                borderColor: String(theme.values.border!.$value),
+                boxShadow: `inset 0 0 0 1px ${String(theme.values.border!.$value)}`,
               }"
               aria-hidden="true"
             />
-            <span class="w-36 font-medium">{{ name }}</span>
-            <code :style="{ color: String(theme.values['fg-muted']!.$value) }">{{ theme.values[name]?.$value }}</code>
+            <span class="w-32 font-medium">{{ name }}</span>
+            <code class="truncate font-mono text-xs" :style="{ color: String(theme.values['fg-muted']!.$value) }">
+              {{ theme.values[name]?.$value }}
+            </code>
             <span
               v-if="ratio(theme.values, name)"
-              class="ml-auto tabular-nums"
+              class="ml-auto font-mono text-xs tabular-nums"
               :style="{ color: String(theme.values['fg-muted']!.$value) }"
             >
               {{ ratio(theme.values, name) }}:1
@@ -82,30 +104,38 @@ const other = [
       </section>
     </div>
 
-    <h2 class="mt-10 text-xl font-semibold">Primitive colours</h2>
-    <section v-for="ramp in ramps" :key="ramp.name" class="mt-4">
-      <h3 class="mb-2 text-sm font-medium text-fg-muted">{{ ramp.name }}</h3>
-      <ul class="grid grid-cols-3 gap-2 sm:grid-cols-6 lg:grid-cols-11">
+    <h2 id="primitive" class="mt-12 scroll-mt-6 border-t border-border pt-8 text-xl font-semibold text-fg">
+      Primitive colours
+    </h2>
+    <section v-for="ramp in ramps" :key="ramp.name" class="mt-6">
+      <h3 class="eyebrow mb-3">{{ ramp.name }}</h3>
+      <ul class="grid grid-cols-3 gap-2 sm:grid-cols-6 xl:grid-cols-11">
         <li v-for="[step, token] in ramp.steps" :key="step" class="text-xs">
           <span
-            class="block h-10 rounded-base border border-border"
+            class="block h-12 rounded-base shadow-[inset_0_0_0_1px_var(--a-border)]"
             :style="{ backgroundColor: String(token.$value) }"
             aria-hidden="true"
           />
-          <span class="mt-1 block font-medium">{{ step }}</span>
-          <code class="text-fg-muted">{{ token.$value }}</code>
+          <span class="mt-1.5 block font-medium text-fg">{{ step }}</span>
+          <code class="font-mono text-fg-muted">{{ token.$value }}</code>
         </li>
       </ul>
     </section>
 
-    <section v-for="[title, group] in other" :key="title" class="mt-10">
-      <h2 class="text-xl font-semibold">{{ title }}</h2>
-      <ul class="mt-3 flex flex-col gap-1 text-sm">
-        <li v-for="(token, name) in group" :key="name" class="flex gap-3">
-          <span class="w-40 font-medium">{{ name }}</span>
-          <code class="text-fg-muted">{{ (token as Entry).$value }}</code>
+    <section v-for="[title, group] in other" :key="title">
+      <h2 :id="title.toLowerCase()" class="mt-12 scroll-mt-6 border-t border-border pt-8 text-xl font-semibold text-fg">
+        {{ title }}
+      </h2>
+      <ul class="mt-5 divide-y divide-border overflow-hidden rounded-lg border border-border">
+        <li v-for="(token, name) in group" :key="name" class="flex items-center gap-3 px-5 py-2.5 text-sm">
+          <span class="w-40 font-medium text-fg">{{ name }}</span>
+          <code class="truncate font-mono text-xs text-fg-muted">{{ (token as Entry).$value }}</code>
         </li>
       </ul>
     </section>
-  </main>
+
+    <template #aside>
+      <TocNav :links="links" />
+    </template>
+  </DocsShell>
 </template>
